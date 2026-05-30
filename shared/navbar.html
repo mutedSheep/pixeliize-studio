@@ -1,0 +1,31 @@
+<nav class="bg-navy sticky top-0 z-50 shadow-2xl" style="border-bottom:1px solid rgba(91,184,212,0.12);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('landing')">
+        <img src="images/logo-with-text.png" alt="Pixeliize Studio Logo" class="h-9 object-contain"/>
+      </div>
+      <!-- Nav Links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a class="nav-link text-sm font-medium text-gray-300 cursor-pointer" onclick="showPage('browse')">Browse</a>
+        <a class="nav-link text-sm font-medium text-gray-300 cursor-pointer" onclick="showPage('about')">About</a>
+        <!-- Support Dropdown -->
+        <div class="relative group">
+          <a class="nav-link text-sm font-medium text-gray-300 cursor-pointer flex items-center gap-1">
+            Support
+            <svg class="w-3 h-3 mt-0.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+          <div class="absolute top-full left-0 mt-2 w-44 bg-navy rounded-xl shadow-2xl border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <a class="block px-4 py-3 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-t-xl cursor-pointer transition" onclick="showPage('contact')">Contact Us</a>
+            <a class="block px-4 py-3 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded-b-xl cursor-pointer transition" onclick="showPage('privacy')">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+      <!-- Auth Buttons -->
+      <div class="flex items-center gap-3">
+        <button onclick="openAuthModal('login')" class="btn-outline text-sm font-semibold px-5 py-2 rounded-lg">Login</button>
+        <button onclick="openAuthModal('signup')" class="btn-primary text-sm font-semibold px-5 py-2 rounded-lg text-white"><span>Sign Up</span></button>
+      </div>
+    </div>
+  </div>
+</nav>

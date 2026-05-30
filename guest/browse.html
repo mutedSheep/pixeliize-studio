@@ -1,0 +1,67 @@
+<div id="page-browse" class="page">
+  <div class="max-w-7xl mx-auto px-4 py-10">
+    <div class="mb-8">
+      <h1 class="font-display text-4xl font-700 text-navy">Browse Assets</h1>
+      <p class="text-gray-500 mt-2">Discover premium multimedia files crafted by our team of expert editors.</p>
+    </div>
+    <div class="flex gap-8">
+      <!-- Sidebar Filters -->
+      <aside class="w-64 flex-shrink-0">
+        <div class="bg-white rounded-2xl shadow-sm p-6 sticky top-24">
+          <h3 class="font-display font-700 text-navy text-lg mb-5">Filters</h3>
+          <!-- Category Filter -->
+          <div class="mb-6">
+            <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Category</p>
+            <div class="space-y-2" id="category-filters">
+              <button onclick="filterCategory('all')" class="filter-btn active w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">All Categories</button>
+              <button onclick="filterCategory('picture')" class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Picture Edits</button>
+              <button onclick="filterCategory('banner')" class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Banners</button>
+              <button onclick="filterCategory('flyer')" class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Flyers</button>
+              <button onclick="filterCategory('presentation')" class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Presentation Templates</button>
+              <button onclick="filterCategory('video')" class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Video Edits</button>
+            </div>
+          </div>
+          <!-- Price Filter -->
+          <div class="mb-6">
+            <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Price Range</p>
+            <div class="space-y-2" id="price-filters">
+              <button onclick="filterPrice('any')" class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Any Price</button>
+              <button onclick="filterPrice('under500')" class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Under ₱500</button>
+              <button onclick="filterPrice('mid')" class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">₱500 – ₱1,500</button>
+              <button onclick="filterPrice('high')" class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">₱1,500+</button>
+            </div>
+          </div>
+          <!-- Sort -->
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Sort By</p>
+            <select onchange="sortProducts(this.value)" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-600 bg-white">
+              <option value="popular">Most Popular</option>
+              <option value="priceasc">Price: Low to High</option>
+              <option value="pricedesc">Price: High to Low</option>
+              <option value="rated">Top Rated</option>
+            </select>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Products Grid -->
+      <div class="flex-1">
+        <!-- Search Bar -->
+        <div class="flex gap-3 mb-6">
+          <div class="flex-1 relative">
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" placeholder="Search assets…" class="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl text-sm bg-white shadow-sm"/>
+          </div>
+          <div class="text-sm text-gray-500 flex items-center px-4 bg-white rounded-xl border border-gray-200 shadow-sm font-medium" id="result-count">
+            24 assets
+          </div>
+        </div>
+
+        <!-- Grid -->
+        <div id="products-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Products injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
