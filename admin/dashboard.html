@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard — Pixeliize Studio</title>
+  <link rel="icon" type="image/png" href="../images/pixeliize-icon.png"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../styles/main.css"/>
+</head>
+<body class="font-body">
+
+<!-- NAVBAR -->
+<nav class="bg-navy sticky top-0 z-50 shadow-2xl" style="border-bottom:1px solid rgba(91,184,212,0.12);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="dashboard.html" class="flex items-center gap-3">
+        <img src="../images/logo-with-text.png" alt="Pixeliize Studio" class="h-9 object-contain"
+             onerror="this.style.display='none'"/>
+        <span class="font-display font-700 text-xs text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 rounded-full px-2 py-0.5 ml-1">Admin</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="dashboard.html" class="nav-link text-sm font-medium text-cyan-400" style="color:#5BB8D4;">Dashboard</a>
+        <a href="products.html"  class="nav-link text-sm font-medium text-gray-300">Products</a>
+        <a href="requests.html"  class="nav-link text-sm font-medium text-gray-300">Requests
+          <span class="ml-1.5 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">3</span>
+        </a>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="relative group cursor-pointer">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-700 text-sm text-white" style="background:linear-gradient(135deg,#4A7CC7,#8B5CF6);">JD</div>
+          <div class="absolute right-0 top-full mt-2 w-48 bg-navy rounded-xl shadow-2xl border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div class="px-4 py-3 border-b border-white/10">
+              <p class="text-white text-sm font-semibold">Juan Dela Cruz</p>
+              <p class="text-gray-400 text-xs">Super Admin</p>
+            </div>
+            <a href="../index.html?logout=success" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 transition cursor-pointer rounded-b-xl">Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE BODY -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <!-- Page Header -->
+  <div class="mb-10">
+    <p class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#4A7CC7">Admin Panel</p>
+    <h1 class="font-display text-4xl font-800 text-navy">Dashboard</h1>
+    <p class="text-gray-500 mt-1 text-sm">Welcome back, Juan. Here's what's happening with Pixeliize Studio.</p>
+  </div>
+
+  <!-- KPI Stat Cards -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+
+    <div class="stat-card bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(91,184,212,0.15),rgba(74,124,199,0.1))">
+          <svg class="w-5 h-5" style="color:#5BB8D4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </div>
+        <span class="text-xs font-semibold text-green-500 bg-green-50 rounded-full px-2 py-0.5">+12%</span>
+      </div>
+      <div class="font-display text-3xl font-800 text-navy">24</div>
+      <div class="text-gray-400 text-sm mt-1">Total Products</div>
+    </div>
+
+    <div class="stat-card bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(196,95,160,0.1))">
+          <svg class="w-5 h-5" style="color:#8B5CF6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+        </div>
+        <span class="text-xs font-semibold text-orange-500 bg-orange-50 rounded-full px-2 py-0.5">3 new</span>
+      </div>
+      <div class="font-display text-3xl font-800 text-navy">17</div>
+      <div class="text-gray-400 text-sm mt-1">Total Requests</div>
+    </div>
+
+    <div class="stat-card bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(74,124,199,0.15),rgba(91,184,212,0.1))">
+          <svg class="w-5 h-5" style="color:#4A7CC7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <span class="text-xs font-semibold text-green-500 bg-green-50 rounded-full px-2 py-0.5">+8%</span>
+      </div>
+      <div class="font-display text-3xl font-800 text-navy">₱48.2K</div>
+      <div class="text-gray-400 text-sm mt-1">Monthly Revenue</div>
+    </div>
+
+    <div class="stat-card bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(196,95,160,0.15),rgba(139,92,246,0.1))">
+          <svg class="w-5 h-5" style="color:#C45FA0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <span class="text-xs font-semibold text-green-500 bg-green-50 rounded-full px-2 py-0.5">+23%</span>
+      </div>
+      <div class="font-display text-3xl font-800 text-navy">831</div>
+      <div class="text-gray-400 text-sm mt-1">Total Clients</div>
+    </div>
+
+  </div>
+
+  <!-- Charts Row -->
+  <div class="grid lg:grid-cols-3 gap-6 mb-10">
+
+    <!-- Revenue Chart (wide) -->
+    <div class="chart-card p-6 lg:col-span-2">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="font-display font-700 text-navy text-lg">Revenue Overview</h2>
+          <p class="text-gray-400 text-xs mt-0.5">Monthly revenue for 2025</p>
+        </div>
+        <select class="text-xs border border-gray-200 rounded-lg px-3 py-1.5 text-gray-500 bg-white" onchange="">
+          <option>2025</option><option>2024</option>
+        </select>
+      </div>
+      <canvas id="revenueChart" height="120"></canvas>
+    </div>
+
+    <!-- Category Breakdown -->
+    <div class="chart-card p-6">
+      <div class="mb-6">
+        <h2 class="font-display font-700 text-navy text-lg">Products by Category</h2>
+        <p class="text-gray-400 text-xs mt-0.5">Distribution of 24 products</p>
+      </div>
+      <canvas id="categoryChart" height="200"></canvas>
+      <div class="mt-4 space-y-2" id="legend-container"></div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Row -->
+  <div class="grid lg:grid-cols-2 gap-6">
+
+    <!-- Recent Requests -->
+    <div class="chart-card p-6">
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="font-display font-700 text-navy text-lg">Recent Requests</h2>
+        <a href="requests.html" class="text-xs font-semibold" style="color:#4A7CC7">View All →</a>
+      </div>
+      <div class="space-y-1">
+        <div class="recent-row flex items-center justify-between p-3 rounded-xl">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-700 text-white flex-shrink-0" style="background:linear-gradient(135deg,#4A7CC7,#8B5CF6)">AM</div>
+            <div>
+              <p class="text-sm font-semibold text-navy">Anna Martinez</p>
+              <p class="text-xs text-gray-400">Photo Edit · 3 images</p>
+            </div>
+          </div>
+          <span class="status-pill status-pending">Pending</span>
+        </div>
+        <div class="recent-row flex items-center justify-between p-3 rounded-xl">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-700 text-white flex-shrink-0" style="background:linear-gradient(135deg,#5BB8D4,#4A7CC7)">RC</div>
+            <div>
+              <p class="text-sm font-semibold text-navy">Rafael Cruz</p>
+              <p class="text-xs text-gray-400">Video Edit · Brand Intro</p>
+            </div>
+          </div>
+          <span class="status-pill status-active">In Progress</span>
+        </div>
+        <div class="recent-row flex items-center justify-between p-3 rounded-xl">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-700 text-white flex-shrink-0" style="background:linear-gradient(135deg,#8B5CF6,#C45FA0)">SL</div>
+            <div>
+              <p class="text-sm font-semibold text-navy">Sofia Lim</p>
+              <p class="text-xs text-gray-400">Banner Design · 2 banners</p>
+            </div>
+          </div>
+          <span class="status-pill status-complete">Completed</span>
+        </div>
+        <div class="recent-row flex items-center justify-between p-3 rounded-xl">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-700 text-white flex-shrink-0" style="background:linear-gradient(135deg,#C45FA0,#8B5CF6)">EB</div>
+            <div>
+              <p class="text-sm font-semibold text-navy">Eli Bautista</p>
+              <p class="text-xs text-gray-400">Presentation · 30 slides</p>
+            </div>
+          </div>
+          <span class="status-pill status-review">In Review</span>
+        </div>
+        <div class="recent-row flex items-center justify-between p-3 rounded-xl">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-700 text-white flex-shrink-0" style="background:linear-gradient(135deg,#4A7CC7,#C45FA0)">MR</div>
+            <div>
+              <p class="text-sm font-semibold text-navy">Marco Reyes</p>
+              <p class="text-xs text-gray-400">Flyer / Poster · Event</p>
+            </div>
+          </div>
+          <span class="status-pill status-pending">Pending</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Products -->
+    <div class="chart-card p-6">
+      <div class="flex items-center justify-between mb-5">
+        <h2 class="font-display font-700 text-navy text-lg">Top Selling Products</h2>
+        <a href="products.html" class="text-xs font-semibold" style="color:#4A7CC7">View All →</a>
+      </div>
+      <div class="space-y-3">
+        <div id="top-products-list"></div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-navy text-gray-400 mt-20" style="border-top:1px solid rgba(91,184,212,0.1);">
+  <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+    <p>© 2025 Pixeliize Studio Admin Panel. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a class="hover:text-gray-400 transition cursor-pointer">Privacy</a>
+      <a class="hover:text-gray-400 transition cursor-pointer">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast Notification -->
+<div id="toast-notification" class="fixed top-24 right-6 z-[100] hidden items-center gap-3 bg-navy text-white text-sm font-semibold px-5 py-3.5 rounded-2xl shadow-2xl transition-all duration-300" style="border:1px solid rgba(91,184,212,0.3)">
+  <div id="toast-icon"></div>
+  <span id="toast-message"></span>
+</div>
+
+<script src="../js/admin/dashboard.js"></script>
+</body>
+</html>

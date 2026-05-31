@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./*.html",
     "./guest/**/*.html",
+    "./admin/**/*.html",
     "./shared/**/*.html",
     "./js/**/*.js"
   ],
@@ -27,4 +28,3 @@ module.exports = {
   },
   plugins: [],
 }
-

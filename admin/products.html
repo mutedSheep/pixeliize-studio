@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products — Pixeliize Studio Admin</title>
+  <link rel="icon" type="image/png" href="../images/pixeliize-icon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../styles/main.css"/>
+</head>
+<body class="font-body">
+
+<!-- NAVBAR -->
+<nav class="bg-navy sticky top-0 z-50 shadow-2xl" style="border-bottom:1px solid rgba(91,184,212,0.12);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="dashboard.html" class="flex items-center gap-3">
+        <img src="../images/logo-with-text.png" alt="Pixeliize Studio" class="h-9 object-contain" onerror="this.style.display='none'"/>
+        <span class="font-display font-700 text-xs text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 rounded-full px-2 py-0.5 ml-1">Admin</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="dashboard.html" class="nav-link text-sm font-medium text-gray-300">Dashboard</a>
+        <a href="products.html"  class="nav-link text-sm font-medium text-gray-300" style="color:#5BB8D4;">Products</a>
+        <a href="requests.html"  class="nav-link text-sm font-medium text-gray-300">Requests
+          <span class="ml-1.5 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">3</span>
+        </a>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="relative group cursor-pointer">
+          <div class="w-9 h-9 rounded-full flex items-center justify-center font-display font-700 text-sm text-white" style="background:linear-gradient(135deg,#4A7CC7,#8B5CF6);">JD</div>
+          <div class="absolute right-0 top-full mt-2 w-48 bg-navy rounded-xl shadow-2xl border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div class="px-4 py-3 border-b border-white/10">
+              <p class="text-white text-sm font-semibold">Juan Dela Cruz</p>
+              <p class="text-gray-400 text-xs">Super Admin</p>
+            </div>
+            <a href="../index.html?logout=success" class="block px-4 py-2.5 text-sm text-gray-300 hover:text-cyan-400 hover:bg-white/5 transition cursor-pointer rounded-b-xl">Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE BODY -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <!-- Header -->
+  <div class="flex items-start justify-between mb-8 flex-wrap gap-4">
+    <div>
+      <p class="text-xs font-semibold tracking-widest uppercase mb-1" style="color:#4A7CC7">Admin Panel</p>
+      <h1 class="font-display text-4xl font-800 text-navy">Products</h1>
+      <p class="text-gray-500 mt-1 text-sm">Manage and publish your multimedia assets.</p>
+    </div>
+    <button onclick="openUploadModal()" class="btn-primary text-white font-semibold text-sm px-6 py-3 rounded-xl flex items-center gap-2">
+      <span class="flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        Upload New Product
+      </span>
+    </button>
+  </div>
+
+  <div class="flex gap-8">
+    <!-- Sidebar -->
+    <aside class="w-60 flex-shrink-0">
+      <div class="bg-white rounded-2xl shadow-sm p-6 sticky top-24">
+        <h3 class="font-display font-700 text-navy text-base mb-5">Filters</h3>
+        <div class="mb-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Category</p>
+          <div class="space-y-2" id="category-filters">
+            <button onclick="adminFilterCategory('all')"          class="filter-btn active w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">All Categories</button>
+            <button onclick="adminFilterCategory('picture')"      class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Picture Edits</button>
+            <button onclick="adminFilterCategory('banner')"       class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Banners</button>
+            <button onclick="adminFilterCategory('flyer')"        class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Flyers</button>
+            <button onclick="adminFilterCategory('presentation')" class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Presentation Templates</button>
+            <button onclick="adminFilterCategory('video')"        class="filter-btn w-full text-left px-3 py-2 rounded-lg text-sm border border-gray-200 font-medium">Video Edits</button>
+          </div>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Sort By</p>
+          <select onchange="adminSort(this.value)" class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-600 bg-white">
+            <option value="popular">Most Popular</option>
+            <option value="newest">Newest First</option>
+            <option value="priceasc">Price: Low to High</option>
+            <option value="pricedesc">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Grid -->
+    <div class="flex-1">
+      <div class="flex gap-3 mb-6">
+        <div class="flex-1 relative">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input id="admin-search" type="text" placeholder="Search products…" oninput="adminRender()" class="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-xl text-sm bg-white shadow-sm"/>
+        </div>
+        <div class="text-sm text-gray-500 flex items-center px-4 bg-white rounded-xl border border-gray-200 shadow-sm font-medium" id="admin-count">12 products</div>
+      </div>
+      <div id="admin-products-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-navy text-gray-400 mt-20" style="border-top:1px solid rgba(91,184,212,0.1);">
+  <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-600">
+    <p>© 2025 Pixeliize Studio Admin Panel. All rights reserved.</p>
+    <div class="flex gap-6"><a class="hover:text-gray-400 transition cursor-pointer">Privacy</a><a class="hover:text-gray-400 transition cursor-pointer">Terms</a></div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     PRODUCT DETAIL MODAL (Admin view)
+══════════════════════════════════════════ -->
+<div id="admin-product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+  <div class="modal-backdrop absolute inset-0 bg-black/70" onclick="closeAdminProductModal()"></div>
+  <div class="modal-box relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
+    <button onclick="closeAdminProductModal()" class="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-700 bg-white rounded-full p-1.5 shadow">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div id="adm-modal-img" class="h-56 w-full relative flex items-center justify-center">
+      <div id="adm-modal-img-inner" class="absolute inset-0"></div>
+      <div class="relative z-10 text-center">
+        <div id="adm-modal-icon" class="w-14 h-14 rounded-2xl bg-white/10 mx-auto flex items-center justify-center backdrop-blur-sm mb-2"></div>
+        <div id="adm-modal-category-badge" class="inline-block text-xs font-semibold bg-white/20 text-white rounded-full px-3 py-1 backdrop-blur-sm"></div>
+      </div>
+    </div>
+    <div class="p-8">
+      <div class="flex items-start justify-between mb-4">
+        <div>
+          <h2 id="adm-modal-title" class="font-display text-2xl font-700 text-navy"></h2>
+          <p id="adm-modal-author" class="text-gray-400 text-sm mt-1"></p>
+        </div>
+        <div class="text-right">
+          <div id="adm-modal-price" class="font-display text-3xl font-800 gradient-text"></div>
+          <div class="flex items-center justify-end gap-1 mt-1">
+            <span style="color:#F59E0B" class="text-sm">★★★★★</span>
+            <span id="adm-modal-rating" class="text-gray-500 text-xs"></span>
+          </div>
+        </div>
+      </div>
+      <p id="adm-modal-desc" class="text-gray-600 text-sm leading-relaxed mb-6"></p>
+      <div id="adm-modal-features" class="grid grid-cols-2 gap-2 mb-6"></div>
+      <!-- Admin actions -->
+      <div class="flex gap-3 pt-4 border-t border-gray-100">
+        <button onclick="openEditModal(currentAdminProduct)" class="btn-primary flex-1 py-3 rounded-xl text-white font-semibold text-sm">
+          <span class="flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            Edit Product
+          </span>
+        </button>
+        <button onclick="confirmDeleteProduct(currentAdminProduct)" class="border border-red-200 text-red-500 hover:bg-red-50 px-5 py-3 rounded-xl text-sm font-semibold transition flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     EDIT PRODUCT MODAL
+══════════════════════════════════════════ -->
+<div id="edit-product-modal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4">
+  <div class="modal-backdrop absolute inset-0 bg-black/70" onclick="closeEditModal()"></div>
+  <div class="modal-box relative bg-white rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden max-h-[90vh] overflow-y-auto">
+    <div class="h-1 w-full" style="background:linear-gradient(90deg,#5BB8D4,#4A7CC7,#8B5CF6,#C45FA0);"></div>
+    <div class="p-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="font-display text-2xl font-700 text-navy">Edit Product</h2>
+        <button onclick="closeEditModal()" class="text-gray-400 hover:text-gray-700">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Product Title</label>
+          <input id="edit-title" type="text" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-navy"/>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Category</label>
+            <select id="edit-category" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-navy bg-white">
+              <option value="picture">Picture Edits</option>
+              <option value="banner">Banners</option>
+              <option value="flyer">Flyers</option>
+              <option value="presentation">Presentation</option>
+              <option value="video">Video Edits</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Price (₱)</label>
+            <input id="edit-price" type="number" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-navy"/>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Description</label>
+          <textarea id="edit-desc" rows="3" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-navy resize-none"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Features (comma-separated)</label>
+          <input id="edit-features" type="text" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-navy" placeholder="Feature 1, Feature 2, Feature 3"/>
+        </div>
+      </div>
+      <div class="flex gap-3 mt-6">
+        <button onclick="saveEditProduct()" class="btn-primary flex-1 py-3 rounded-xl text-white font-semibold text-sm"><span>Save Changes</span></button>
+        <button onclick="closeEditModal()" class="border border-gray-200 text-gray-500 hover:bg-gray-50 px-5 py-3 rounded-xl text-sm font-semibold transition">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     UPLOAD NEW PRODUCT MODAL
+══════════════════════════════════════════ -->
+<div id="upload-product-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+  <div class="modal-backdrop absolute inset-0 bg-black/70" onclick="closeUploadModal()"></div>
+  <div class="modal-box relative bg-white rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden max-h-[90vh] overflow-y-auto">
+    <div class="h-1 w-full" style="background:linear-gradient(90deg,#5BB8D4,#4A7CC7,#8B5CF6,#C45FA0);"></div>
+    <div class="p-8">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="font-display text-2xl font-700 text-navy">Upload New Product</h2>
+          <p class="text-gray-400 text-sm mt-1">Add a new multimedia asset to the marketplace.</p>
+        </div>
+        <button onclick="closeUploadModal()" class="text-gray-400 hover:text-gray-700">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Upload zone -->
+      <div class="upload-zone rounded-2xl p-8 text-center mb-6 cursor-pointer" id="upload-zone" onclick="document.getElementById('upload-file-input').click()" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" ondragleave="handleDragLeave(event)">
+        <input type="file" id="upload-file-input" class="hidden" accept="image/*,video/*,.pdf,.pptx" onchange="handleFileSelect(event)"/>
+        <div id="upload-zone-content">
+          <svg class="w-10 h-10 mx-auto mb-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+          <p class="text-sm font-semibold text-navy">Drag & drop your file here</p>
+          <p class="text-xs text-gray-400 mt-1">or click to browse — PNG, JPG, MP4, PDF, PPTX</p>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Product Title <span class="text-red-400">*</span></label>
+          <input id="upload-title" type="text" placeholder="e.g. Nexus Corporate Deck" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-navy"/>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Category <span class="text-red-400">*</span></label>
+            <select id="upload-category" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-navy bg-white">
+              <option value="">Select category…</option>
+              <option value="picture">Picture Edits</option>
+              <option value="banner">Banners</option>
+              <option value="flyer">Flyers</option>
+              <option value="presentation">Presentation</option>
+              <option value="video">Video Edits</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Price (₱) <span class="text-red-400">*</span></label>
+            <input id="upload-price" type="number" placeholder="499" min="1" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-navy"/>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Description <span class="text-red-400">*</span></label>
+          <textarea id="upload-desc" rows="3" placeholder="Describe your product…" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-navy resize-none"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Features <span class="text-gray-400 normal-case font-normal">(comma-separated)</span></label>
+          <input id="upload-features" type="text" placeholder="40+ Slides, PowerPoint & Keynote, Free Font Included" class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm text-navy"/>
+        </div>
+        <div id="upload-error" class="hidden text-red-500 text-xs font-medium bg-red-50 rounded-lg px-4 py-2.5"></div>
+      </div>
+
+      <div class="flex gap-3 mt-6">
+        <button onclick="handleUploadSubmit()" class="btn-primary flex-1 py-3 rounded-xl text-white font-semibold text-sm">
+          <span class="flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+            Publish Product
+          </span>
+        </button>
+        <button onclick="closeUploadModal()" class="border border-gray-200 text-gray-500 hover:bg-gray-50 px-5 py-3 rounded-xl text-sm font-semibold transition">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Success Toast -->
+<div id="toast-success" class="fixed bottom-6 right-6 z-[100] hidden items-center gap-3 bg-navy text-white text-sm font-semibold px-5 py-3.5 rounded-2xl shadow-2xl" style="border:1px solid rgba(91,184,212,0.3)">
+  <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+  <span id="toast-message">Done!</span>
+</div>
+
+<script src="../js/guest/products-data.js"></script>
+<script src="../js/admin/products.js"></script>
+</body>
+</html>
